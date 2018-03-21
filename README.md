@@ -1,4 +1,3 @@
-# yii2-js-frontends
 <p align="center">
     <a href="https://github.com/yiisoft" target="_blank">
         <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
@@ -7,7 +6,7 @@
     <br>
 </p>
 
-This project is a skeleton of a yii 2 api [Yii 2](http://www.yiiframework.com/) 
+This project is a skeleton of a [Yii 2](http://www.yiiframework.com/) api 
 with [Angular](https://angular.io/), 
 [Reactjs](https://reactjs.org)  
 and [Vuejs](https://vuejs.org/) frontends
