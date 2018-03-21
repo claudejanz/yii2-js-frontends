@@ -26,6 +26,27 @@ and [Vuejs](https://vuejs.org/) frontends
 
 ## Installation
 
+### Install dependencies
+
+~~~
+cd ./yii-server/
+composer install
+cd ../angular
+npm install
+cd ../reactjs
+npm install
+cd ../vuejs
+npm install
+~~~
+
+### Install database
+
+~~~
+cd ./yii-server/
+./yii migrate
+./yii migrate --migrationPath=@yii/rbac/migrations
+~~~
+
 ### Set hosts file
 
 ~~~
