@@ -72,8 +72,8 @@ and [Vuejs](https://vuejs.org/) frontends
 </VirtualHost>
 <VirtualHost *:80>
     ServerName reactjs.yii2-js-frontends.local
-    DocumentRoot "c:/GitDepot/yii2-js-frontends/reactjs/build/"    
-    <Directory  "c:/GitDepot/yii2-js-frontends/reactjs/build/">
+    DocumentRoot "c:/GitDepot/yii2-js-frontends/reactjs/public/"    
+    <Directory  "c:/GitDepot/yii2-js-frontends/reactjs/public/">
 		Options All
 		AllowOverride All
 		Require all granted
@@ -89,8 +89,8 @@ and [Vuejs](https://vuejs.org/) frontends
 </VirtualHost>
 <VirtualHost *:80>
     ServerName vuejs.yii2-js-frontends.local
-    DocumentRoot "c:/GitDepot/yii2-js-frontends/vuejs/public/"    
-    <Directory  "c:/GitDepot/yii2-js-frontends/vuejs/public/">
+    DocumentRoot "c:/GitDepot/yii2-js-frontends/vuejs/build/"    
+    <Directory  "c:/GitDepot/yii2-js-frontends/vuejs/build/">
 		Options All
 		AllowOverride All
 		Require all granted
