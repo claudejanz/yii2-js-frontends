@@ -29,81 +29,81 @@ and [Vuejs](https://vuejs.org/) frontends
 ### Set hosts file
 
 ~~~
-127.0.0.1	api.yii2-js-frontends.local
-127.0.0.1	angular.yii2-js-frontends.local
-127.0.0.1	reactjs.yii2-js-frontends.local
-127.0.0.1	vuejs.yii2-js-frontends.local
+127.0.0.1     api.yii2-js-frontends.local
+127.0.0.1     angular.yii2-js-frontends.local
+127.0.0.1     reactjs.yii2-js-frontends.local
+127.0.0.1     vuejs.yii2-js-frontends.local
 ~~~
 
 ### Set virtial host
 
 ~~~
 <VirtualHost *:80>
-	ServerName api.yii2-js-frontends.local
-	DocumentRoot c:/GitDepot/yii2-js-frontends/server/web
-	<Directory  "c:/GitDepot/yii2-js-frontends/server/web/">
-		Options All
-		AllowOverride All
-		Require all granted
-		<IfModule mod_rewrite.c>
-			RewriteEngine On
-			RewriteBase /
-			RewriteRule ^index\.php$ - [L]
-			RewriteCond %{REQUEST_FILENAME} !-f
-			RewriteCond %{REQUEST_FILENAME} !-d
-			RewriteRule . /index.php [L]
-		</IfModule>
-	</Directory>
+    ServerName api.yii2-js-frontends.local
+    DocumentRoot c:/GitDepot/yii2-js-frontends/server/web
+    <Directory  "c:/GitDepot/yii2-js-frontends/server/web/">
+        Options All
+        AllowOverride All
+        Require all granted
+        <IfModule mod_rewrite.c>
+             RewriteEngine On
+             RewriteBase /
+             RewriteRule ^index\.php$ - [L]
+             RewriteCond %{REQUEST_FILENAME} !-f
+             RewriteCond %{REQUEST_FILENAME} !-d
+             RewriteRule . /index.php [L]
+        </IfModule>
+     </Directory>
 </VirtualHost>
 <VirtualHost *:80>
     ServerName angular.yii2-js-frontends.local
     DocumentRoot "c:/GitDepot/yii2-js-frontends/angular/dist/"    
     <Directory  "c:/GitDepot/yii2-js-frontends/angular/dist/">
-		Options All
-		AllowOverride All
-		Require all granted
-		<IfModule mod_rewrite.c>
-			RewriteEngine On
-			RewriteBase /
-			RewriteRule ^index\.html$ - [L]
-			RewriteCond %{REQUEST_FILENAME} !-f
-			RewriteCond %{REQUEST_FILENAME} !-d
-			RewriteRule . /index.html [L]
-		</IfModule>
-	</Directory>
+        Options All
+        AllowOverride All
+        Require all granted
+        <IfModule mod_rewrite.c>
+             RewriteEngine On
+             RewriteBase /
+             RewriteRule ^index\.html$ - [L]
+             RewriteCond %{REQUEST_FILENAME} !-f
+             RewriteCond %{REQUEST_FILENAME} !-d
+             RewriteRule . /index.html [L]
+        </IfModule>
+     </Directory>
 </VirtualHost>
 <VirtualHost *:80>
     ServerName reactjs.yii2-js-frontends.local
     DocumentRoot "c:/GitDepot/yii2-js-frontends/reactjs/public/"    
     <Directory  "c:/GitDepot/yii2-js-frontends/reactjs/public/">
-		Options All
-		AllowOverride All
-		Require all granted
-		<IfModule mod_rewrite.c>
-			RewriteEngine On
-			RewriteBase /
-			RewriteRule ^index\.html$ - [L]
-			RewriteCond %{REQUEST_FILENAME} !-f
-			RewriteCond %{REQUEST_FILENAME} !-d
-			RewriteRule . /index.html [L]
-		</IfModule>
-	</Directory>
+        Options All
+        AllowOverride All
+        Require all granted
+        <IfModule mod_rewrite.c>
+             RewriteEngine On
+             RewriteBase /
+             RewriteRule ^index\.html$ - [L]
+             RewriteCond %{REQUEST_FILENAME} !-f
+             RewriteCond %{REQUEST_FILENAME} !-d
+             RewriteRule . /index.html [L]
+        </IfModule>
+     </Directory>
 </VirtualHost>
 <VirtualHost *:80>
     ServerName vuejs.yii2-js-frontends.local
     DocumentRoot "c:/GitDepot/yii2-js-frontends/vuejs/build/"    
     <Directory  "c:/GitDepot/yii2-js-frontends/vuejs/build/">
-		Options All
-		AllowOverride All
-		Require all granted
-		<IfModule mod_rewrite.c>
-			RewriteEngine On
-			RewriteBase /
-			RewriteRule ^index\.html$ - [L]
-			RewriteCond %{REQUEST_FILENAME} !-f
-			RewriteCond %{REQUEST_FILENAME} !-d
-			RewriteRule . /index.html [L]
-		</IfModule>
-	</Directory>
+        Options All
+        AllowOverride All
+        Require all granted
+        <IfModule mod_rewrite.c>
+             RewriteEngine On
+             RewriteBase /
+             RewriteRule ^index\.html$ - [L]
+             RewriteCond %{REQUEST_FILENAME} !-f
+             RewriteCond %{REQUEST_FILENAME} !-d
+             RewriteRule . /index.html [L]
+        </IfModule>
+     </Directory>
 </VirtualHost>
 ~~~
