@@ -17,7 +17,7 @@ and [Vuejs](https://vuejs.org/) frontends
 
 ## Installation
 
-# Set hosts file
+### Set hosts file
 ~~~
 127.0.0.1	api.yii2-js-frontends.local
 127.0.0.1	vuejs.yii2-js-frontends.local
@@ -25,7 +25,7 @@ and [Vuejs](https://vuejs.org/) frontends
 127.0.0.1	angular.yii2-js-frontends.local
 ~~~
 
-# Set virtial host
+### Set virtial host
 ~~~
 <VirtualHost *:80>
 	ServerName api.yii2-js-frontends.local
