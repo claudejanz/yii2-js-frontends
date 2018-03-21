@@ -1,5 +1,4 @@
 <?php
-namespace app\migrations;
 
 use app\models\User;
 use yii\db\Migration;

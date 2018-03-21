@@ -28,8 +28,6 @@ use yii\web\IdentityInterface;
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $password write-only password
- * 
- * @property Reservation[] $reservationsPerso
  */
 class User extends UserBase implements IdentityInterface
 {
@@ -38,10 +36,11 @@ class User extends UserBase implements IdentityInterface
     const STATUS_ACTIVE = 10;
     const STATUS_DELETED = 20;
     const ROLE_USER = 'user';
+    const ROLE_ADMIN = 'admin';
     const ROLE_SUPERADMIN= 'superadmin';
     const ROLE_MODERATOR = 'moderator';
     const ROLE_AUTHOR = 'author';
-    const ROLE_ADMIN = 'admin';
+    const ROLE_CLIENT = 'client';
     const SCENARIO_CREATE = "create";
 
     public $password;
@@ -132,15 +131,19 @@ class User extends UserBase implements IdentityInterface
         }
 
 
-        $user = static::find()->where([
-                    'password_reset_token' => $token,
-                ])->andWhere(['<=', 'status', self::STATUS_ACTIVE])->one();
+        $user = static::find()->where(['password_reset_token' => $token,])
+        ->andWhere(['<=', 'status', self::STATUS_ACTIVE])
+        ->one();
         return $user;
     }
 
     public static function findByEmailOrUsername($emailOrUsername)
     {
-        return static::find()->where(['email' => $emailOrUsername])->orWhere(['username' => $emailOrUsername])->andWhere(['<=', 'status', self::STATUS_ACTIVE])->one();
+        return static::find()
+        ->where(['email' => $emailOrUsername])
+        ->orWhere(['username' => $emailOrUsername])
+        ->andWhere(['<=', 'status', self::STATUS_ACTIVE])
+        ->one();
     }
 
     /**
@@ -232,11 +235,11 @@ class User extends UserBase implements IdentityInterface
         ]);
     }
 
-    private static $_roles;
+    private static $roles;
 
     public static function getRoles()
     {
-        if (!isset(self::$_roles)) {
+        if (!isset(self::$roles)) {
             $orig = Yii::$app->authManager->getRoles();
             $roles = [];
             foreach ($orig as $key => $role) {
@@ -244,9 +247,9 @@ class User extends UserBase implements IdentityInterface
                     $roles[$role->name] = lcfirst($role->name);
                 }
             };
-            self::$_roles = $roles;
+            self::$roles = $roles;
         }
-        return self::$_roles;
+        return self::$roles;
     }
 
     public static function getRoleOptions()
@@ -275,9 +278,4 @@ class User extends UserBase implements IdentityInterface
     {
         Yii::$app->user->login($this, 3600 * 24 * 30);
     }
-
-
-
-   
-
 }
