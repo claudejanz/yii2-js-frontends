@@ -69,9 +69,6 @@ class User extends UserBase implements IdentityInterface
             'autoRole' => [
                 'class' => RoleBehavior::className()
             ],
-            'defaultWeight' => [
-                'class' => WeightDefaultBehavior::className(),
-            ],
         ];
     }
 
@@ -88,14 +85,30 @@ class User extends UserBase implements IdentityInterface
             ['password', 'setMyPassword', 'on' => self::SCENARIO_CREATE],
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_TO_VALIDATE, self::STATUS_ACTIVE, self::STATUS_DELETED]],
-            ['role', 'default', 'value' => self::ROLE_EMPLOYEE],
+            ['role', 'default', 'value' => self::ROLE_CLIENT],
             ['role', 'in', 'range' => ArrayHelper::map($roles, 'name', 'name'),],
             [['email', 'mobile', 'firstname', 'lastname', 'username'], 'filter', 'filter' => 'trim'],
             [['email', 'mobile', 'firstname', 'lastname', 'username'], 'default', 'value' => null],
             ['email', 'email'],
+            ['email', 'unique'],
             [['email', 'username'], 'required'],
             [['email', 'username'], 'unique'],
                 ], parent::rules());
+    }
+
+    /**
+     * Determines exposed fields
+     *
+     * @return void
+     */
+    public function fields()
+    {
+        $fields = parent::fields();
+    
+        // remove fields that contain sensitive information
+        unset($fields['auth_key'], $fields['password_hash'], $fields['password_reset_token']);
+    
+        return $fields;
     }
 
     /**
@@ -111,7 +124,7 @@ class User extends UserBase implements IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+        return static::findOne(['access_token' => $token]);
     }
 
     /**
@@ -237,6 +250,11 @@ class User extends UserBase implements IdentityInterface
 
     private static $roles;
 
+    /**
+     * Returns roles where user has access
+     *
+     * @return Roles[]
+     */
     public static function getRoles()
     {
         if (!isset(self::$roles)) {
@@ -252,11 +270,16 @@ class User extends UserBase implements IdentityInterface
         return self::$roles;
     }
 
+    /**
+     * Return roles for validation
+     *
+     * @return array
+     */
     public static function getRoleOptions()
     {
         $roles = [];
-        if (Yii::$app->user->can(self::ROLE_EMPLOYEE)) {
-            $roles[self::ROLE_EMPLOYEE] = Yii::t('app', 'ROLE_EMPLOYEE');
+        if (Yii::$app->user->can(self::ROLE_CLIENT)) {
+            $roles[self::ROLE_CLIENT] = Yii::t('app', 'ROLE_EMPLOYEE');
         }
         if (Yii::$app->user->can(self::ROLE_ADMIN)) {
             $roles[self::ROLE_ADMIN] = Yii::t('app', 'ROLE_ADMIN');
@@ -273,9 +296,16 @@ class User extends UserBase implements IdentityInterface
         $options = self::getRoleOptions();
         return $options[$this->role];
     }
-
-    public function login()
+    /**
+     * Generates "api" access token
+     */
+    public function generateAccessToken()
     {
-        Yii::$app->user->login($this, 3600 * 24 * 30);
+        $this->access_token = Yii::$app->security->generateRandomString($length = 16);
     }
+
+    // public function login()
+    // {
+    //     Yii::$app->user->login($this, 3600 * 24 * 30);
+    // }
 }

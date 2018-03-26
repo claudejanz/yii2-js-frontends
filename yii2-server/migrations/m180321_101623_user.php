@@ -19,8 +19,9 @@ class m180321_101623_user extends Migration
         $this->createTable('user', [
             'id' => $this->primaryKey(),
             'username' => $this->string()->notNull(),
-            'email' => $this->string()->notNull(),
+            'email' => $this->string()->unique()->notNull(),
             'mobile' => $this->string(),
+            'firstname' => $this->string(),
             'lastname' => $this->string(),
             'address' => $this->string(),
             'city_npa' => $this->string(),
@@ -29,6 +30,7 @@ class m180321_101623_user extends Migration
             'auth_key' => $this->string(32)->notNull(),
             'password_hash' => $this->string()->notNull(),
             'password_reset_token' => $this->string(),
+            'access_token' => $this->string(),
             'created_by' => $this->integer()->null(),
             'created_at' => $this->dateTime()->null(),
             'updated_by' => $this->integer()->null(),

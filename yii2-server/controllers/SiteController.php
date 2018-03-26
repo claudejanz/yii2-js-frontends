@@ -3,15 +3,17 @@
 namespace app\controllers;
 
 use Yii;
-use yii\filters\AccessControl;
-use yii\web\Controller;
 use yii\web\Response;
-use yii\filters\VerbFilter;
+use yii\filters\Cors;
+use yii\web\Controller;
 use app\models\LoginForm;
+use yii\filters\VerbFilter;
 use app\models\ContactForm;
+use yii\filters\AccessControl;
 
 class SiteController extends Controller
 {
+    public $enableCsrfValidation = false;
     /**
      * {@inheritdoc}
      */
@@ -35,6 +37,7 @@ class SiteController extends Controller
                     'logout' => ['post'],
                 ],
             ],
+           
         ];
     }
 

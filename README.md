@@ -45,6 +45,8 @@ npm install
 cd ./yii-server/
 ./yii migrate
 ./yii migrate --migrationPath=@yii/rbac/migrations
+./yii rbac
+./yii content
 ~~~
 
 ### Set hosts file
