@@ -11,8 +11,7 @@ export default () => {
     baseURL: `http://api.yii2-js-frontends.local/`,
     headers: {
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Headers': '*',
-      'Content-Type': 'application/json'
+      'Access-Control-Allow-Headers': '*'
     }
   })
 }

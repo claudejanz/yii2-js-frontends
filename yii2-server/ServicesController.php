@@ -48,7 +48,6 @@ class ServicesController extends Controller
      */
     public function actionRegister()
     {
-        $post = Yii::$app->request->post();
-        return $post;
+        return ['email'=>'claudejanz@gmail.com','name'=>'Claude Janz'];
     }
 }

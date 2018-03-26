@@ -70,11 +70,11 @@ export default {
   },
   methods: {
     async register () {
+      const response = await AuthenticationService.register({
+        usernameEmail: this.usernameEmail,
+        password: this.password
+      })
       try {
-        const response = await AuthenticationService.register({
-          usernameEmail: this.usernameEmail,
-          password: this.password
-        })
         this.$store.dispatch('setToken', response.data.user.access_token)
         this.$store.dispatch('setUser', response.data.user)
       } catch (error) {
