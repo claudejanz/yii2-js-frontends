@@ -18,7 +18,7 @@ export default new Vuex.Store({
   mutations: {
     setUser (state, user) {
       state.user = user
-      state.token = (user)?user.access_token:null
+      state.token = (user) ? user.access_token : null
       state.links = [
         {text: 'Login', to: 'login', visible: !user},
         {text: 'Register', to: 'register', visible: !user}

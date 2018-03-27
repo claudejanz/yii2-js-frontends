@@ -70,7 +70,7 @@ class RbacController extends Controller
     {
         $authManager = Yii::$app->authManager;
 
-        $total = 76;
+        $total = 48;
         $i = 1;
         Console::startProgress(0, $total, 'Init RBAC: ', false);
         try {
@@ -78,112 +78,151 @@ class RbacController extends Controller
 
 
 
+            /**
+             * Create Permissions
+             */
+            
+            // add own rule for users
+            $ownRule = new OwnRule;
+            $authManager->add($ownRule);
+            Console::updateProgress($i++, $total);
 
-
-            // relational init
-            // add the rule
+            // add author rule for posts and comments
             $authorRule = new AuthorRule;
             $authManager->add($authorRule);
             Console::updateProgress($i++, $total);
             
-            $ownRule = new OwnRule;
-            $authManager->add($ownRule);
-            Console::updateProgress($i++, $total);
-            
-           
-
-
-
-
-
-
-
-
-
-            /**
-             * Rules for user
-             */
-            // create "user" permissions
+            // create and add "user" permissions
             $userIndex = $authManager->createPermission('user index');
-            Console::updateProgress($i++, $total);
-            $userCreate = $authManager->createPermission('user create');
-            Console::updateProgress($i++, $total);
-            $userView = $authManager->createPermission('user view');
-            Console::updateProgress($i++, $total);
-            $userUpdate = $authManager->createPermission('user update');
-            Console::updateProgress($i++, $total);
-            $userDelete = $authManager->createPermission('user delete');
-            Console::updateProgress($i++, $total);
-
-            // add "user" permistions
             $authManager->add($userIndex);
             Console::updateProgress($i++, $total);
+            $userCreate = $authManager->createPermission('user create');
             $authManager->add($userCreate);
             Console::updateProgress($i++, $total);
+            $userView = $authManager->createPermission('user view');
             $authManager->add($userView);
             Console::updateProgress($i++, $total);
+            $userUpdate = $authManager->createPermission('user update');
             $authManager->add($userUpdate);
             Console::updateProgress($i++, $total);
+            $userDelete = $authManager->createPermission('user delete');
             $authManager->add($userDelete);
             Console::updateProgress($i++, $total);
 
-            // add the "userOwnView" permission and associate the rule with it.
-            $userOwnView = $authManager->createPermission('user own view');
-            Console::updateProgress($i++, $total);
-            $userOwnView->ruleName = $ownRule->name;
-            $authManager->add($userOwnView);
-            Console::updateProgress($i++, $total);
-            $authManager->addChild($userOwnView, $userView);
-            Console::updateProgress($i++, $total);
 
-            // add the "userOwnUpdate" permission and associate the rule with it.
+            // create, add the "user own update" permission and associate the parent rule.
             $userOwnUpdate = $authManager->createPermission('user own update');
-            Console::updateProgress($i++, $total);
             $userOwnUpdate->ruleName = $ownRule->name;
             $authManager->add($userOwnUpdate);
-            Console::updateProgress($i++, $total);
             $authManager->addChild($userOwnUpdate, $userUpdate);
             Console::updateProgress($i++, $total);
 
+            // create and add "topic" permissions
+            $topicIndex = $authManager->createPermission('topic index');
+            $authManager->add($topicIndex);
+            Console::updateProgress($i++, $total);
+            $topicCreate = $authManager->createPermission('topic create');
+            $authManager->add($topicCreate);
+            Console::updateProgress($i++, $total);
+            $topicUpdate = $authManager->createPermission('topic update');
+            $authManager->add($topicUpdate);
+            Console::updateProgress($i++, $total);
+            $topicDelete = $authManager->createPermission('topic delete');
+            $authManager->add($topicDelete);
+            Console::updateProgress($i++, $total);
+
+            // create and add "post" permissions
+            $postIndex = $authManager->createPermission('post index');
+            $authManager->add($postIndex);
+            Console::updateProgress($i++, $total);
+            $postCreate = $authManager->createPermission('post create');
+            $authManager->add($postCreate);
+            Console::updateProgress($i++, $total);
+            $postUpdate = $authManager->createPermission('post update');
+            $authManager->add($postUpdate);
+            Console::updateProgress($i++, $total);
+            $postDelete = $authManager->createPermission('post delete');
+            $authManager->add($postDelete);
+            Console::updateProgress($i++, $total);
+
+            // create, add the "post own update" permission and associate the parent rule.
+            $postOwnUpdate = $authManager->createPermission('post own update');
+            $postOwnUpdate->ruleName = $authorRule->name;
+            $authManager->add($postOwnUpdate);
+            $authManager->addChild($postOwnUpdate, $postUpdate);
+            Console::updateProgress($i++, $total);
             
+            // create, add the "post own delete" permission and associate the parent rule.
+            $postOwnDelete = $authManager->createPermission('post own delete');
+            $postOwnDelete->ruleName = $authorRule->name;
+            $authManager->add($postOwnDelete);
+            $authManager->addChild($postOwnDelete, $postDelete);
+            Console::updateProgress($i++, $total);
+
+            // create and add "comment" permissions
+            $commentIndex = $authManager->createPermission('comment index');
+            $authManager->add($commentIndex);
+            Console::updateProgress($i++, $total);
+            $commentCreate = $authManager->createPermission('comment create');
+            $authManager->add($commentCreate);
+            Console::updateProgress($i++, $total);
+            $commentUpdate = $authManager->createPermission('comment update');
+            $authManager->add($commentUpdate);
+            Console::updateProgress($i++, $total);
+            $commentDelete = $authManager->createPermission('comment delete');
+            $authManager->add($commentDelete);
+            Console::updateProgress($i++, $total);
+            
+            // create, add the "comment own update" permission and associate the parent rule.
+            $commentOwnUpdate = $authManager->createPermission('comment own update');
+            $commentOwnUpdate->ruleName = $authorRule->name;
+            $authManager->add($commentOwnUpdate);
+            $authManager->addChild($commentOwnUpdate, $commentUpdate);
+            Console::updateProgress($i++, $total);
+
+            // create, add the "comment own delete" permission and associate the parent rule.
+            $commentOwnDelete = $authManager->createPermission('comment own delete');
+            $commentOwnDelete->ruleName = $authorRule->name;
+            $authManager->add($commentOwnDelete);
+            $authManager->addChild($commentOwnDelete, $commentDelete);
+            Console::updateProgress($i++, $total);
 
 
             /**
              * Create roles and relations
              */
-            // Create roles
-            $client = $authManager->createRole(User::ROLE_CLIENT);
+            // Create and add roles
+            $user = $authManager->createRole(User::ROLE_USER);
+            $authManager->add($user);
             Console::updateProgress($i++, $total);
             $admin = $authManager->createRole(User::ROLE_ADMIN);
-            Console::updateProgress($i++, $total);
-            $superadmin = $authManager->createRole(User::ROLE_SUPERADMIN);
-            Console::updateProgress($i++, $total);
-
-            // Add roles in Yii::$app->authManager
-            $authManager->add($client);
-            Console::updateProgress($i++, $total);
             $authManager->add($admin);
             Console::updateProgress($i++, $total);
-            $authManager->add($superadmin);
-            Console::updateProgress($i++, $total);
 
-
-            // Client
-            $parent = $client;
+            // add permissions to user role
+            $parent = $user;
             
-            $authManager->addChild($parent, $userOwnView);
-            Console::updateProgress($i++, $total);
+            // add own user
             $authManager->addChild($parent, $userOwnUpdate);
             Console::updateProgress($i++, $total);
+            $authManager->addChild($parent, $postOwnUpdate);
+            Console::updateProgress($i++, $total);
+            $authManager->addChild($parent, $postOwnDelete);
+            Console::updateProgress($i++, $total);
+            $authManager->addChild($parent, $commentOwnUpdate);
+            Console::updateProgress($i++, $total);
+            $authManager->addChild($parent, $commentOwnDelete);
+            Console::updateProgress($i++, $total);
 
-            // Administrateur
+            // add permissions to admin role
             $parent = $admin;
-            $authManager->addChild($parent, $client);
+
+            // heritate user role
+            $authManager->addChild($parent, $user);
             Console::updateProgress($i++, $total);
             
+            // add full access to users
             $authManager->addChild($parent, $userCreate);
-            Console::updateProgress($i++, $total);
-            $authManager->addChild($parent, $userView);
             Console::updateProgress($i++, $total);
             $authManager->addChild($parent, $userIndex);
             Console::updateProgress($i++, $total);
@@ -192,9 +231,35 @@ class RbacController extends Controller
             $authManager->addChild($parent, $userDelete);
             Console::updateProgress($i++, $total);
 
-            // Super Administrateur
-            $parent = $superadmin;
-            $authManager->addChild($parent, $admin);
+            // add full access to topic
+            $authManager->addChild($parent, $topicCreate);
+            Console::updateProgress($i++, $total);
+            $authManager->addChild($parent, $topicIndex);
+            Console::updateProgress($i++, $total);
+            $authManager->addChild($parent, $topicUpdate);
+            Console::updateProgress($i++, $total);
+            $authManager->addChild($parent, $topicDelete);
+            Console::updateProgress($i++, $total);
+            
+            // add full access to post
+            $authManager->addChild($parent, $postCreate);
+            Console::updateProgress($i++, $total);
+            $authManager->addChild($parent, $postIndex);
+            Console::updateProgress($i++, $total);
+            $authManager->addChild($parent, $postUpdate);
+            Console::updateProgress($i++, $total);
+            $authManager->addChild($parent, $postDelete);
+            Console::updateProgress($i++, $total);
+            
+            // add full access to comment
+            $authManager->addChild($parent, $commentCreate);
+            Console::updateProgress($i++, $total);
+            $authManager->addChild($parent, $commentIndex);
+            Console::updateProgress($i++, $total);
+            $authManager->addChild($parent, $commentUpdate);
+            Console::updateProgress($i++, $total);
+            $authManager->addChild($parent, $commentDelete);
+            Console::updateProgress($i++, $total);
 
             Console::endProgress("done." . PHP_EOL);
 
@@ -219,15 +284,6 @@ class RbacController extends Controller
         try {
             Console::startProgress(0, $total, 'Assign RBAC: ', false);
 
-            $users = User::find()->select('id')->where(['role' => User::ROLE_SUPERADMIN])->column();
-            if ($users) {
-                $role = $authManager->getRole(User::ROLE_SUPERADMIN);
-                foreach ($users as $value) {
-                    $authManager->assign($role, $value);
-                }
-            }
-            Console::updateProgress($i++, $total);
-
             $users = User::find()->select('id')->where(['role' => User::ROLE_ADMIN])->column();
             if ($users) {
                 $role = $authManager->getRole(User::ROLE_ADMIN);
@@ -237,9 +293,9 @@ class RbacController extends Controller
             }
             Console::updateProgress($i++, $total);
 
-            $users = User::find()->select('id')->where(['role' => User::ROLE_CLIENT])->column();
+            $users = User::find()->select('id')->where(['role' => User::ROLE_USER])->column();
             if ($users) {
-                $role = $authManager->getRole(User::ROLE_CLIENT);
+                $role = $authManager->getRole(User::ROLE_USER);
                 foreach ($users as $value) {
                     $authManager->assign($role, $value);
                 }

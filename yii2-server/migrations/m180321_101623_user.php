@@ -26,7 +26,7 @@ class m180321_101623_user extends Migration
             'address' => $this->string(),
             'city_npa' => $this->string(),
             'status' => $this->smallInteger()->notNull()->defaultValue(User::STATUS_TO_VALIDATE),
-            'role' => $this->string('12')->notNull()->defaultValue(User::ROLE_CLIENT),
+            'role' => $this->string('12')->notNull()->defaultValue(User::ROLE_USER),
             'auth_key' => $this->string(32)->notNull(),
             'password_hash' => $this->string()->notNull(),
             'password_reset_token' => $this->string(),
@@ -36,6 +36,39 @@ class m180321_101623_user extends Migration
             'updated_by' => $this->integer()->null(),
             'updated_at' => $this->dateTime()->null(),
         ], $tableOptions);
+
+        $this->createTable('topic', [
+            'id' => $this->primaryKey(),
+            'title' => $this->string()->notNull(),
+            'created_by' => $this->integer()->null(),
+            'created_at' => $this->dateTime()->null(),
+            'updated_by' => $this->integer()->null(),
+            'updated_at' => $this->dateTime()->null(),
+        ], $tableOptions);
+        
+        $this->createTable('post', [
+            'id' => $this->primaryKey(),
+            'title' => $this->string()->notNull(),
+            'content' => $this->text()->notNull(),
+            'topic_id'=>$this->integer()->notNull(),
+            'created_by' => $this->integer()->null(),
+            'created_at' => $this->dateTime()->null(),
+            'updated_by' => $this->integer()->null(),
+            'updated_at' => $this->dateTime()->null(),
+        ], $tableOptions);
+        $this->addForeignKey('fk-post-topic_id-topic-id','post','topic_id','topic','id');
+
+        $this->createTable('comment', [
+            'id' => $this->primaryKey(),
+            'content' => $this->text()->notNull(),
+            'post_id'=>$this->integer()->notNull(),
+            'created_by' => $this->integer()->null(),
+            'created_at' => $this->dateTime()->null(),
+            'updated_by' => $this->integer()->null(),
+            'updated_at' => $this->dateTime()->null(),
+        ], $tableOptions);
+        $this->addForeignKey('fk-comment-post_id-post-id','comment','post_id','post','id');
+
     }
 
     /**

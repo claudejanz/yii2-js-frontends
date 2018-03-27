@@ -62,7 +62,7 @@ export default {
       usernameEmail: 'claude',
       password: '12345678',
       nameRules: [
-        v => !!v || 'Name is required',
+        v => !!v || 'Name is required'
       ],
       errors: {}
     }
@@ -74,7 +74,6 @@ export default {
           usernameEmail: this.usernameEmail,
           password: this.password
         })
-        console.log(response.data)
         this.$store.dispatch('setUser', response.data)
         this.$router.push({name: 'home'})
       } catch (error) {

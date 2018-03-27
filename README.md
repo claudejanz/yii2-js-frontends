@@ -15,7 +15,7 @@
     <br>
 </p>
 
-This project is a skeleton of a [Yii 2](http://www.yiiframework.com/) api 
+# This project is a skeleton of a [Yii 2](http://www.yiiframework.com/) api 
 with [Angular](https://angular.io/), 
 [Reactjs](https://reactjs.org) 
 and [Vuejs](https://vuejs.org/) frontends
@@ -28,7 +28,7 @@ and [Vuejs](https://vuejs.org/) frontends
 
 ### Install dependencies
 
-~~~
+~~~bash
 cd ./yii-server/
 composer install
 cd ../angular
@@ -41,17 +41,17 @@ npm install
 
 ### Install database
 
-~~~
+~~~bash
 cd ./yii-server/
 ./yii migrate
 ./yii migrate --migrationPath=@yii/rbac/migrations
-./yii rbac
+./yii rbac 
 ./yii content
 ~~~
 
 ### Set hosts file
 
-~~~
+~~~bash
 127.0.0.1     api.yii2-js-frontends.local
 127.0.0.1     angular.yii2-js-frontends.local
 127.0.0.1     reactjs.yii2-js-frontends.local
@@ -60,7 +60,7 @@ cd ./yii-server/
 
 ### Set virtial host
 
-~~~
+~~~bash
 <VirtualHost *:80>
     ServerName api.yii2-js-frontends.local
     DocumentRoot c:/GitDepot/yii2-js-frontends/yii2-server/web
@@ -114,8 +114,8 @@ cd ./yii-server/
 </VirtualHost>
 <VirtualHost *:80>
     ServerName vuejs.yii2-js-frontends.local
-    DocumentRoot "c:/GitDepot/yii2-js-frontends/vuejs/build/"    
-    <Directory  "c:/GitDepot/yii2-js-frontends/vuejs/build/">
+    DocumentRoot "c:/GitDepot/yii2-js-frontends/vuejs/dist/"
+    <Directory  "c:/GitDepot/yii2-js-frontends/vuejs/dist/">
         Options All
         AllowOverride All
         Require all granted

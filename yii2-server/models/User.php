@@ -37,10 +37,6 @@ class User extends UserBase implements IdentityInterface
     const STATUS_DELETED = 20;
     const ROLE_USER = 'user';
     const ROLE_ADMIN = 'admin';
-    const ROLE_SUPERADMIN= 'superadmin';
-    const ROLE_MODERATOR = 'moderator';
-    const ROLE_AUTHOR = 'author';
-    const ROLE_CLIENT = 'client';
     const SCENARIO_CREATE = "create";
 
     public $password;
@@ -85,7 +81,7 @@ class User extends UserBase implements IdentityInterface
             ['password', 'setMyPassword', 'on' => self::SCENARIO_CREATE],
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_TO_VALIDATE, self::STATUS_ACTIVE, self::STATUS_DELETED]],
-            ['role', 'default', 'value' => self::ROLE_CLIENT],
+            ['role', 'default', 'value' => self::ROLE_USER],
             ['role', 'in', 'range' => ArrayHelper::map($roles, 'name', 'name'),],
             [['email', 'mobile', 'firstname', 'lastname', 'username'], 'filter', 'filter' => 'trim'],
             [['email', 'mobile', 'firstname', 'lastname', 'username'], 'default', 'value' => null],
@@ -278,14 +274,11 @@ class User extends UserBase implements IdentityInterface
     public static function getRoleOptions()
     {
         $roles = [];
-        if (Yii::$app->user->can(self::ROLE_CLIENT)) {
-            $roles[self::ROLE_CLIENT] = Yii::t('app', 'ROLE_EMPLOYEE');
+        if (Yii::$app->user->can(self::ROLE_USER)) {
+            $roles[self::ROLE_USER] = Yii::t('app', 'ROLE_USER');
         }
         if (Yii::$app->user->can(self::ROLE_ADMIN)) {
             $roles[self::ROLE_ADMIN] = Yii::t('app', 'ROLE_ADMIN');
-        }
-        if (Yii::$app->user->can(self::ROLE_SUPERADMIN)) {
-            $roles[self::ROLE_SUPERADMIN] = Yii::t('app', 'ROLE_SUPERADMIN');
         }
 
         return $roles;

@@ -33,7 +33,7 @@ class UserBase extends \yii\db\ActiveRecord
 */
 public static function tableName()
 {
-return 'user';
+    return 'user';
 }
 
 /**
@@ -41,15 +41,15 @@ return 'user';
 */
 public function rules()
 {
-        return [
-            [['username', 'email', 'auth_key', 'password_hash'], 'required'],
-            [['status', 'created_by', 'updated_by'], 'integer'],
-            [['created_at', 'updated_at'], 'safe'],
-            [['username', 'email', 'mobile', 'firstname', 'lastname', 'address', 'city_npa', 'password_hash', 'password_reset_token', 'access_token'], 'string', 'max' => 255],
-            [['role'], 'string', 'max' => 12],
-            [['auth_key'], 'string', 'max' => 32],
-            [['email'], 'unique'],
-        ];
+    return [
+        [['username', 'email', 'auth_key', 'password_hash'], 'required'],
+        [['status', 'created_by', 'updated_by'], 'integer'],
+        [['created_at', 'updated_at'], 'safe'],
+        [['username', 'email', 'mobile', 'firstname', 'lastname', 'address', 'city_npa', 'password_hash', 'password_reset_token', 'access_token'], 'string', 'max' => 255],
+        [['role'], 'string', 'max' => 12],
+        [['auth_key'], 'string', 'max' => 32],
+        [['email'], 'unique'],
+    ];
 }
 
 /**

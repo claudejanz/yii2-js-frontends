@@ -63,7 +63,7 @@ export default {
       usernameEmail: '',
       password: '',
       nameRules: [
-        v => !!v || 'Name is required',
+        v => !!v || 'Name is required'
       ],
       errors: {}
     }
@@ -75,11 +75,9 @@ export default {
         password: this.password
       })
       try {
-        this.$store.dispatch('setToken', response.data.user.access_token)
         this.$store.dispatch('setUser', response.data.user)
       } catch (error) {
         this.errors = {}
-        console.log(error)
         error.response.data.forEach(element => {
           this.errors[element.field] = element.message
         })
