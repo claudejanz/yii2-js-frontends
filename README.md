@@ -12,8 +12,8 @@
         <img src="https://vuejs.org/images/logo.png" height="100px">
     </a>
 </p>
-||
-|:--:|
+|                     |
+|:-------------------:|
 | # yii2-js-frontends |
 
 
