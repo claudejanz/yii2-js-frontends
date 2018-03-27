@@ -4,8 +4,8 @@
       <v-flex xs6 offset-xs3>
         <div class="white elevation-2">
           <v-form v-model="valid">
-            <v-toolbar flat dense dark class="cyan">
-              <v-toolbar-title class="white--text">Login</v-toolbar-title>
+            <v-toolbar flat dark v-bind:class="this.$store.state.colorHeader">
+              <v-toolbar-title>Login</v-toolbar-title>
             <!-- <v-spacer></v-spacer>
             <v-btn icon>
               <v-icon>search</v-icon>
@@ -39,7 +39,7 @@
               <div v-html="errors.password" class='red--text' />
               <br>
               <v-btn
-              class="cyan"
+              v-bind:class="this.$store.state.colorHeader"
               dark
               @click="login"
               >Login</v-btn>
@@ -59,8 +59,8 @@ export default {
   data () {
     return {
       valid: false,
-      usernameEmail: '',
-      password: '',
+      usernameEmail: 'claude',
+      password: '12345678',
       nameRules: [
         v => !!v || 'Name is required',
       ],
@@ -74,8 +74,9 @@ export default {
           usernameEmail: this.usernameEmail,
           password: this.password
         })
-        this.$store.dispatch('setToken', response.data.user.access_token)
-        this.$store.dispatch('setUser', response.data.user)
+        console.log(response.data)
+        this.$store.dispatch('setUser', response.data)
+        this.$router.push({name: 'home'})
       } catch (error) {
         this.errors = {}
         console.log(error)

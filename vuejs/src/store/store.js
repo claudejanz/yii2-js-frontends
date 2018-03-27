@@ -8,16 +8,26 @@ export default new Vuex.Store({
   state: {
     token: null,
     user: null,
-    isUserLoggedIn: false
+    isUserLoggedIn: false,
+    colorHeader: 'blue',
+    links: [
+      {text: 'Login', to: 'login', visible: true},
+      {text: 'Register', to: 'register', visible: true}
+    ]
   },
   mutations: {
-    setToken (state, token) {
-      state.token = token
+    setUser (state, user) {
+      state.user = user
+      state.token = (user)?user.access_token:null
+      state.links = [
+        {text: 'Login', to: 'login', visible: !user},
+        {text: 'Register', to: 'register', visible: !user}
+      ]
     }
   },
   actions: {
-    setToken ({commit}, token) {
-      commit('setToken', token)
+    setUser ({commit}, user) {
+      commit('setUser', user)
     }
   }
 

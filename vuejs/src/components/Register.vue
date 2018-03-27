@@ -4,7 +4,7 @@
       <v-flex xs6 offset-xs3>
         <div class="white elevation-2">
           <v-form v-model="valid">
-            <v-toolbar flat dense dark class="cyan">
+            <v-toolbar flat dark v-bind:class="this.$store.state.colorHeader">
               <v-toolbar-title class="white--text">Register</v-toolbar-title>
             <!-- <v-spacer></v-spacer>
             <v-btn icon>
@@ -40,7 +40,7 @@
               <div v-html="errors.password" class='red--text' />
               <br>
               <v-btn
-              class="cyan"
+              v-bind:class="this.$store.state.colorHeader"
               dark
               @click="register"
               >Register</v-btn>
