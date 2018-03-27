@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import AuthenticationService from '@/services/AuthenticationService'
+import CommunicationService from '@/services/CommunicationService'
 export default {
   name: 'Register',
   data () {
@@ -70,7 +70,7 @@ export default {
   },
   methods: {
     async register () {
-      const response = await AuthenticationService.register({
+      const response = await CommunicationService.register({
         username: this.username,
         password: this.password
       })

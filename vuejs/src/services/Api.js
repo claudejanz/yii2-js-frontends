@@ -5,10 +5,11 @@
  */
 
 import axios from 'axios'
+import config from '@/../../config/config.json'
 
 export default () => {
   return axios.create({
-    baseURL: `http://api.yii2-js-frontends.local/`,
+    baseURL: config.apiBaseUrl,
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Headers': '*'

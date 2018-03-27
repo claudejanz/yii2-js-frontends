@@ -2,7 +2,7 @@
   <v-toolbar dark fixed v-bind:class="$store.state.colorHeader">
     <v-toolbar-title>
     <v-toolbar-items>
-      <v-btn flat :to='home'>
+      <v-btn flat>
       Application
       </v-btn>
     </v-toolbar-items>

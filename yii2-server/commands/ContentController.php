@@ -74,15 +74,15 @@ class ContentController extends Controller
         $admin = new User();
         $admin->scenario = User::SCENARIO_CREATE;
         $admin->attributes = [
-            'username' => 'claudejanz',
+            'username' => 'klod',
             'firstname' => 'Claude',
             'lastname' => 'Janz',
             'address' => '8a chemin de la chenalette',
             'city_npa' => 'Prangins, 1197',
             'mobile' => '+41 22 369 05 85',
-            'email' => 'claudejanz@bluewin.ch',
+            'email' => 'claudejanz@klod.ch',
             'password' => '12345678',
-            'role' => User::ROLE_SUPERADMIN,
+            'role' => User::ROLE_ADMIN,
             'status' => User::STATUS_ACTIVE,
         ];
         if (!$admin->save()) {
@@ -102,7 +102,7 @@ class ContentController extends Controller
             'mobile' => '+41 22 369 05 85',
             'email' => 'claudejanz@gmail.com',
             'password' => '12345678',
-            'role' => User::ROLE_SUPERADMIN,
+            'role' => User::ROLE_ADMIN,
             'status' => User::STATUS_ACTIVE,
         ];
         if (!$admin->save()) {

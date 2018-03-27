@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import AuthenticationService from '@/services/AuthenticationService'
+import CommunicationService from '@/services/CommunicationService'
 export default {
   name: 'Login',
   data () {
@@ -70,7 +70,7 @@ export default {
   methods: {
     async login () {
       try {
-        const response = await AuthenticationService.login({
+        const response = await CommunicationService.login({
           usernameEmail: this.usernameEmail,
           password: this.password
         })
