@@ -57,7 +57,7 @@ cd ./yii-server/
 
 ### Set virtial host
 
-~~~apache_conf
+~~~apache
 <VirtualHost *:80>
     ServerName api.yii2-js-frontends.local
     DocumentRoot c:/GitDepot/yii2-js-frontends/yii2-server/web
