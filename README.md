@@ -12,9 +12,10 @@
         <img src="https://vuejs.org/images/logo.png" height="100px">
     </a>
 </p>
-|                     |
-|:-------------------:|
-| # yii2-js-frontends |
+
+||
+------|-----|------
+|# yii2-js-frontends|
 
 
 This project is a skeleton of a [Yii 2](http://www.yiiframework.com/) api with [Angular](https://angular.io/), [Reactjs](https://reactjs.org) and [Vuejs](https://vuejs.org/) frontends
