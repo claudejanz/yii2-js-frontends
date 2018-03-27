@@ -11,11 +11,13 @@
     <a href="https://github.com/vuejs/vue" target="_blank">
         <img src="https://vuejs.org/images/logo.png" height="100px">
     </a>
-    <h1 align="center">yii2-js-frontends</h1>
-    <br>
 </p>
+||
+|:--:|
+| # yii2-js-frontends |
 
-# This project is a skeleton of a [Yii 2](http://www.yiiframework.com/) api with [Angular](https://angular.io/), [Reactjs](https://reactjs.org) and [Vuejs](https://vuejs.org/) frontends
+
+This project is a skeleton of a [Yii 2](http://www.yiiframework.com/) api with [Angular](https://angular.io/), [Reactjs](https://reactjs.org) and [Vuejs](https://vuejs.org/) frontends
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/claudejanz/yii2-js-frontends.svg)](https://packagist.org/packages/claudejanz/yii2-js-frontends)
 [![Total Downloads](https://img.shields.io/packagist/dt/claudejanz/yii2-js-frontends.svg)](https://packagist.org/packages/claudejanz/yii2-js-frontends)
