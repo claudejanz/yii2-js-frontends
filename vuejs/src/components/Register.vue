@@ -23,8 +23,8 @@
             <div class="pl-4 pr-4 pt-2 pb-2">
               <v-text-field
               label="username or email"
-              name="usernameEmail"
-              v-model="usernameEmail"
+              name="username"
+              v-model="username"
               :rules="nameRules"
               required
               ></v-text-field>
@@ -71,7 +71,7 @@ export default {
   methods: {
     async register () {
       const response = await AuthenticationService.register({
-        usernameEmail: this.usernameEmail,
+        username: this.username,
         password: this.password
       })
       try {
