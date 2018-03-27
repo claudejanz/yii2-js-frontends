@@ -1,4 +1,4 @@
-# yii2-js-frontends
+# Yii2-js-frontends
 
 <p align="center">
     <a href="https://github.com/yiisoft" target="_blank">
