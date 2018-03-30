@@ -5,7 +5,7 @@
   "author": "Claude Janz <claudejanz@klod.ch>",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --port 8082 --inline --progress --config build/webpack.dev.conf.js",
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "unit": "jest --config test/unit/jest.conf.js --coverage",
     "e2e": "node test/e2e/runner.js",
@@ -15,10 +15,12 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "crip-vue-loading": "^1.2.5",
     "npm": "^5.7.1",
     "vue": "^2.5.2",
     "vue-cli": "^2.9.3",
     "vue-generate-component": "^1.3.0",
+    "vue-mc": "^0.2.4",
     "vue-router": "^3.0.1",
     "vuetify": "^1.0.10",
     "vuex": "^3.0.1",

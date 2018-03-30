@@ -1,10 +1,10 @@
 <template>
-  <panel title='Register'>
+  <panel title='Topics'>
     <v-form v-model="valid">
       <v-text-field
       label="username or email"
-      name="username"
-      v-model="username"
+      name="usernameEmail"
+      v-model="usernameEmail"
       :rules="nameRules"
       required
       ></v-text-field>
@@ -12,7 +12,6 @@
       <v-text-field
       label="password"
       name="password"
-      type='password'
       v-model='password'
       required
       ></v-text-field>
@@ -22,15 +21,16 @@
       <v-btn
       v-bind:class="this.$store.state.colorHeader"
       dark
-      @click="register"
-      >Register</v-btn>
+      @click="login"
+      >Login</v-btn>
     </v-form>
   </panel>
 </template>
 
 <script>
-import UserServices from '@/services/UserServices'
+import CommunicationService from '@/services/CommunicationService'
 import Panel from '@/components/subs/Panel'
+
 export default {
   components: {
     Panel
@@ -38,8 +38,8 @@ export default {
   data () {
     return {
       valid: false,
-      usernameEmail: '',
-      password: '',
+      usernameEmail: 'claude',
+      password: '12345678',
       nameRules: [
         v => !!v || 'Name is required'
       ],
@@ -47,15 +47,17 @@ export default {
     }
   },
   methods: {
-    async register () {
-      const response = await UserServices.register({
-        username: this.username,
-        password: this.password
-      })
+    async login () {
       try {
-        this.$store.dispatch('setUser', response.data.user)
+        const response = await CommunicationService.login({
+          usernameEmail: this.usernameEmail,
+          password: this.password
+        })
+        this.$store.dispatch('setUser', response.data)
+        this.$router.push({name: 'home'})
       } catch (error) {
         this.errors = {}
+        console.log(error)
         error.response.data.forEach(element => {
           this.errors[element.field] = element.message
         })
@@ -75,4 +77,5 @@ export default {
 .error {
   color: red;
 }
+
 </style>

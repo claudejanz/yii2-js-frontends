@@ -13,9 +13,12 @@ use yii\filters\auth\HttpBearerAuth;
 use yii\filters\auth\QueryParamAuth;
 use yii\web\ServerErrorHttpException;
 
-class UsersController extends ActiveController
+/**
+ * Undocumented class
+ */
+class CommentsController extends ActiveController
 {
-    public $modelClass = 'app\models\User';
+    public $modelClass = 'app\models\Comment';
     public function init()
     {
         parent::init();
@@ -46,36 +49,14 @@ class UsersController extends ActiveController
                 QueryParamAuth::class,
             ],
             'optional' => [
-                'login',
-                'create',
                 'index',
+                'create',
+                'view',
             ]
         ];
         return $behaviors;
     }
-    /**
-     * Login action.
-     *
-     * @return Response|string
-     */
-    public function actionLogin()
-    {
-       
-        $model = new LoginForm();
-        $model->load(Yii::$app->getRequest()->getBodyParams(), '');
-        if ($model->login()) {
-            $model->user->generateAccessToken();
-            $model->user->save();
-            // $response = Yii::$app->getResponse();
-            // $response->setStatusCode(201);
-            // $id = implode(',', array_values($model->getPrimaryKey(true)));
-            // $response->getHeaders()->set('Location', Url::toRoute([''], true));
-            return $model->user;
-        } elseif (!$model->hasErrors()) {
-            throw new ServerErrorHttpException('Failed to create the object for unknown reason.');
-        }
-        return $model;
-    }
+   
     public function checkAccess($action, $model = null, $params = [])
     {
         // check if the user can access $action and $model

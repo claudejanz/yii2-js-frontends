@@ -2,10 +2,15 @@
 
 namespace app\commands;
 
-use app\models\User;
 use Yii;
-use yii\console\Controller;
+use Faker\Factory;
+use app\models\Post;
+use app\models\User;
+use app\models\Topic;
+use yii\helpers\Html;
+use app\models\Comment;
 use yii\helpers\Console;
+use yii\console\Controller;
 
 /**
  * Provides content
@@ -22,7 +27,10 @@ class ContentController extends Controller
     {
         $assets = [
             'Exit',
-            'Import Users',
+            'Create Users',
+            'Create Topics',
+            'Create Posts',
+            'Create Comments',
         ];
         $sep = '----------------------------------------------' . PHP_EOL;
         $message = $sep;
@@ -42,14 +50,26 @@ class ContentController extends Controller
         $error = $this->ansiFormat('Not valid input', Console::FG_RED);
         $pattern = '@^((' . implode('|', $valids) . '|all),?)+$@';
         $value = $this->prompt($message . 'Choices:', [
-            'default' => '1',
+            'default' => 'all',
             'pattern' => $pattern,
             'error' => $error
         ]);
 
         $values = preg_split('@,@', $value, -1, PREG_SPLIT_NO_EMPTY);
         if (in_array('all', $values) || in_array('1', $values)) {
-            $this->importUsers();
+            $this->createUsers();
+        }
+
+        if (in_array('all', $values) || in_array('2', $values)) {
+            $this->createTopics();
+        }
+       
+        if (in_array('all', $values) || in_array('3', $values)) {
+            $this->createPosts();
+        }
+       
+        if (in_array('all', $values) || in_array('4', $values)) {
+            $this->createComments();
         }
        
         if (in_array('0', $values)) {
@@ -59,7 +79,7 @@ class ContentController extends Controller
         echo $sep;
     }
 
-    public function importUsers()
+    public function createUsers()
     {
         Yii::$app->db->createCommand("SET foreign_key_checks = 0;")->execute();
         Yii::$app->db->createCommand()->truncateTable('user')->execute();
@@ -68,7 +88,6 @@ class ContentController extends Controller
         $total = 2;
         $count = 1;
         Console::startProgress(0, $total, 'Insert Admins: ', false);
-        $print = true;
 
         // les supers admin
         $admin = new User();
@@ -110,6 +129,102 @@ class ContentController extends Controller
         }
         
         Console::updateProgress($count++, $total);
+        Console::endProgress("done." . PHP_EOL);
+    }
+
+    public function createTopics()
+    {
+        Yii::$app->db->createCommand("SET foreign_key_checks = 0;")->execute();
+        Yii::$app->db->createCommand()->truncateTable('topic')->execute();
+        Yii::$app->db->createCommand("SET foreign_key_checks = 1;")->execute();
+
+        $topics=[
+            ['title'=>'Front end'],
+            ['title'=>'Back end'],
+        ];
+
+        $total = count($topics);
+        $count = 1;
+        Console::startProgress(0, $total, 'Insert Topics: ', false);
+        
+        // topics
+        foreach ($topics as $data) {
+            $topic = new Topic();
+            $topic->attributes = $data;
+            if (!$topic->save()) {
+                var_dump($topic->errors);
+            }
+            Console::updateProgress($count++, $total);
+        }
+        Console::endProgress("done." . PHP_EOL);
+    }
+
+    public function createPosts()
+    {
+        Yii::$app->db->createCommand("SET foreign_key_checks = 0;")->execute();
+        Yii::$app->db->createCommand()->truncateTable('post')->execute();
+        Yii::$app->db->createCommand("SET foreign_key_checks = 1;")->execute();
+
+        $topics = Topic::find()->indexBy('title')->all();
+        $faker = Factory::create('fr-CH');
+        $posts=[
+            [
+                'title'=>'Yii2',
+                'topic_id'=> $topics['Back end']->id,
+            ],
+            [
+                'title'=>'Angular',
+                'topic_id'=> $topics['Front end']->id,
+            ],
+            [
+                'title'=>'Reactjs',
+                'topic_id'=> $topics['Front end']->id,
+            ],
+            [
+                'title'=>'Vuejs',
+                'topic_id'=> $topics['Front end']->id,
+            ],
+        ];
+
+        $total = count($posts);
+        $count = 1;
+        Console::startProgress(0, $total, 'Insert Topics: ', false);
+        
+        // topics
+        foreach ($posts as $data) {
+            $post = new Post();
+            $post->attributes = $data;
+            $post->content = Html::tag('p', join('</p><p>', $faker->sentences(rand(3, 5))));
+            if (!$post->save()) {
+                var_dump($post->errors);
+            }
+            Console::updateProgress($count++, $total);
+        }
+        Console::endProgress("done." . PHP_EOL);
+    }
+    public function createComments()
+    {
+        Yii::$app->db->createCommand("SET foreign_key_checks = 0;")->execute();
+        Yii::$app->db->createCommand()->truncateTable('comment')->execute();
+        Yii::$app->db->createCommand("SET foreign_key_checks = 1;")->execute();
+
+        $posts = Post::find()->select(['id'])->column();
+        $faker = Factory::create('fr-CH');
+        $total =50;
+        $count = 1;
+        Console::startProgress(0, $total, 'Insert Topics: ', false);
+        
+        // topics
+        for ($i=0; $i < $total; $i++) {
+            $comment = new Comment();
+            $comment->content = Html::tag('p', join('</p><p>', $faker->sentences(rand(3, 5))));
+            $comment->post_id = $posts[array_rand($posts)];
+            if (!$comment->save()) {
+                var_dump($comment->errors);
+                var_dump($comment->attributes);
+            }
+            Console::updateProgress($count++, $total);
+        }
         Console::endProgress("done." . PHP_EOL);
     }
 }

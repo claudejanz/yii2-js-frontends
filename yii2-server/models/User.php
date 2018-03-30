@@ -103,6 +103,9 @@ class User extends UserBase implements IdentityInterface
     
         // remove fields that contain sensitive information
         unset($fields['auth_key'], $fields['password_hash'], $fields['password_reset_token']);
+        if (!(Yii::$app->user->isGuest && Yii::$app->user->id == $this->user->id )) {
+            unset($fields['access_token']);
+        }
     
         return $fields;
     }

@@ -30,4 +30,18 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+.spin{
+  animation-name: spin;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+@keyframes spin {
+    from {
+      transform:rotate(0deg);
+    }
+    to {
+      transform:rotate(-360deg);
+    }
+}
 </style>

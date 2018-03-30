@@ -7,6 +7,9 @@
 import Api from '@/services/Api'
 
 export default {
+  index () {
+    return Api().get('users/index')
+  },
   login (credentials) {
     return Api().post('users/login', credentials)
   },

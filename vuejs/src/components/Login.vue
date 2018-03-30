@@ -1,61 +1,40 @@
 <template>
-  <v-container fluid>
-    <v-layout>
-      <v-flex xs6 offset-xs3>
-        <div class="white elevation-2">
-          <v-form v-model="valid">
-            <v-toolbar flat dark v-bind:class="this.$store.state.colorHeader">
-              <v-toolbar-title>Login</v-toolbar-title>
-            <!-- <v-spacer></v-spacer>
-            <v-btn icon>
-              <v-icon>search</v-icon>
-            </v-btn>
-            <v-btn icon>
-              <v-icon>apps</v-icon>
-            </v-btn>
-            <v-btn icon>
-              <v-icon>refresh</v-icon>
-            </v-btn>
-            <v-btn icon>
-              <v-icon>more_vert</v-icon>
-            </v-btn> -->
-            </v-toolbar>
-            <div class="pl-4 pr-4 pt-2 pb-2">
-              <v-text-field
-              label="username or email"
-              name="usernameEmail"
-              v-model="usernameEmail"
-              :rules="nameRules"
-              required
-              ></v-text-field>
-              <div v-html="errors.usernameEmail" class='red--text' />
-              <v-text-field
-              label="password"
-              name="password"
-              v-model='password'
-              required
-              ></v-text-field>
-              <br>
-              <div v-html="errors.password" class='red--text' />
-              <br>
-              <v-btn
-              v-bind:class="this.$store.state.colorHeader"
-              dark
-              @click="login"
-              >Login</v-btn>
-
-            </div>
-           </v-form>
-        </div>
-      </v-flex>
-    </v-layout>
-  </v-container>
+  <panel title='Login'>
+    <v-form v-model="valid">
+      <v-text-field
+      label="username or email"
+      name="usernameEmail"
+      v-model="usernameEmail"
+      :rules="nameRules"
+      required
+      ></v-text-field>
+      <div v-html="errors.usernameEmail" class='red--text' />
+      <v-text-field
+      label="password"
+      name="password"
+      v-model='password'
+      required
+      ></v-text-field>
+      <br>
+      <div v-html="errors.password" class='red--text' />
+      <br>
+      <v-btn
+      v-bind:class="this.$store.state.colorHeader"
+      dark
+      @click="login"
+      >Login</v-btn>
+    </v-form>
+  </panel>
 </template>
 
 <script>
-import CommunicationService from '@/services/CommunicationService'
+import UserServices from '@/services/UserServices'
+import Panel from '@/components/subs/Panel'
+
 export default {
-  name: 'Login',
+  components: {
+    Panel
+  },
   data () {
     return {
       valid: false,
@@ -70,7 +49,7 @@ export default {
   methods: {
     async login () {
       try {
-        const response = await CommunicationService.login({
+        const response = await UserServices.login({
           usernameEmail: this.usernameEmail,
           password: this.password
         })
