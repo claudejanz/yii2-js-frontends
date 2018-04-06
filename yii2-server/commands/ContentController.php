@@ -183,6 +183,13 @@ class ContentController extends Controller
             [
                 'title'=>'Vuejs',
                 'topic_id'=> $topics['Front end']->id,
+                'content'=> Html::tag('p', 'For vuejs front end I used:')
+                .Html::beginTag('ul')
+                .Html::tag('li', Html::a('vuex', 'https://vuex.vuejs.org/en/', ['target'=>'_blank']))
+                .Html::tag('li', Html::a('vue-router', 'https://router.vuejs.org/en/', ['target'=>'_blank']))
+                .Html::tag('li', Html::a('vue-mc', 'http://vuemc.io/', ['target'=>'_blank']))
+                .Html::tag('li', Html::a('vuetifyjs', 'https://vuetifyjs.com/en/', ['target'=>'_blank']))
+                .Html::endTag('ul'),
             ],
         ];
 
@@ -194,7 +201,9 @@ class ContentController extends Controller
         foreach ($posts as $data) {
             $post = new Post();
             $post->attributes = $data;
-            $post->content = Html::tag('p', join('</p><p>', $faker->sentences(rand(3, 5))));
+            if (!isset($data['content'])) {
+                $post->content = Html::tag('p', join('</p><p>', $faker->sentences(rand(3, 5))));
+            }
             if (!$post->save()) {
                 var_dump($post->errors);
             }

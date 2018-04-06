@@ -16,6 +16,10 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'user' =>[
+            'class'=>'claudejanz\toolbox\models\fake\User',
+            'id'=>1
+        ],
         'log' => [
             'targets' => [
                 [

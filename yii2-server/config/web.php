@@ -54,7 +54,12 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'users'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => [
+                    'users',
+                    'topics',
+                    'posts',
+                    'comments',
+                ]],
             ],
         ],
         'db' => $db,
