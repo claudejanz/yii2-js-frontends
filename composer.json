@@ -9,5 +9,12 @@
             "email": "claudejanz@klod.ch"
         }
     ],
-    "require": {}
+    "require": {},
+    "scripts": {
+        "post-create-project-cmd": [
+            "cd ./angular/ && npm install && cd ../",
+            "cd ./reactjs/ && npm install && cd ../",
+            "cd ./vuejs/ && npm install && cd ../"
+        ]
+    }
 }

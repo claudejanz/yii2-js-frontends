@@ -39,7 +39,7 @@ cd ../yii2-server/      # go to yii-server root
 
 ### Set hosts file
 
-Set your .hosts file to access api and frontends. Only the first one is required for developpment. the three others are for production tests.
+Set your *.hosts* file to access api and frontends. Only the first one is required for development. the three others are for production tests.
 
 ~~~bash
 127.0.0.1     api.yii2-js-frontends.local
@@ -125,16 +125,23 @@ Set your vhosts on Apache Server to access api and frontends. Only the first one
 </VirtualHost>
 ~~~
 
-! Don't forget to restart server after setting your vhosts
+> Don't forget to restart server after setting your vhosts
 
-## Run in developpment
+## Run in development
 
 ### Vuejs
 
-To run vuejs in dev mode go to vuejs folder and run
+To run *vuejs* in dev mode go to vuejs folder and run
 
 ~~~batch
 npm run dev
 ~~~
 
 You can access front-end through [http://localhost:8082](http://localhost:8082)
+
+## TODO
+
+- [ ] angular
+- [ ] reactjs
+- [x] vuejs
+- [x] yii2
