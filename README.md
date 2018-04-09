@@ -58,7 +58,7 @@ Set your *.hosts* file to access api and frontends. Only the first one is requir
 ### Set virtial host
 
 Set your vhosts on Apache Server to access api and frontends. 
-> Only the first one is required for developpment. the three others are for production tests
+> Only the first one is required for development. the three others are for production tests
 
 ~~~apache
 <VirtualHost *:80>
@@ -150,4 +150,5 @@ You can access front-end through [http://localhost:8082](http://localhost:8082)
 - [ ] angular
 - [ ] reactjs
 - [x] vuejs
+- [ ] vuejs - token access
 - [x] yii2
