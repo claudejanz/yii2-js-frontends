@@ -8,29 +8,34 @@ This project is a skeleton of a [Yii 2](http://www.yiiframework.com/) api with [
 
 ## Installation
 
-### Install dependencies
+### Dependencies managers
 
-Install all required dependencies.
+To install project and all dependencies, we need 2 dependencies managers:
+
+* [npm](https://www.npmjs.com/) needs to be globaly installed for js dependencies.
+
+* [composer](https://getcomposer.org/doc/00-intro.md#introduction) needs to be globaly installed for php dependencies.
+
+> You can test your installations by running: **npm -v** for checking npm and: **composer -V** for composer 
+
+### Install project
+
+Run flowing command to create project and load all necessary dependencies:
 
 ~~~bash
-cd ./yii2-server/   # go to yii server folder.
-composer install    # install yii dependencies through [composer](https://getcomposer.org/)
-cd ../angular       # go to angular folder
-npm install         # install angular dependencies through node packet manager [npm](https://www.npmjs.com/)
-cd ../reactjs       # go to reactjs folder
-npm install         # install reactjs dependencies through node packet manager [npm](https://www.npmjs.com/)
-cd ../vuejs         # go to vuejs folder
-npm install         # install vuejs dependencies through node packet manager [npm](https://www.npmjs.com/)
+composer create-project --stability=dev claudejanz/yii2-js-frontends your-folder
 ~~~
+
+> Don't forget to change **your-folder** to your desired destination folder 
 
 ### Install database
 
-Configure your database name and access in ./yii-server/config/db.php or simpliy create a mysql database called "yii2-js-frontends" with "root" and no password access
+Configure your database name and access in **./yii-server/config/db.php** or simpliy create a mysql database called "**yii2-js-frontends**" with "**root**" and **no password** access
 
-Then run following scripts to migrate and populate your database:
+Run following scripts to migrate and populate your database:
 
 ~~~bash
-cd ../yii2-server/      # go to yii-server root
+cd ./yii2-server/      # go to yii-server root
 ./yii migrate           # database schema for users, topics, posts and comments - press entre at prompt
 ./yii migrate --migrationPath=@yii/rbac/migrations  # database schema for role based access(RBAC) - press enter at prompt
 ./yii rbac              # generate RBAC permissions, rules and roles - press enter at prompt
@@ -48,11 +53,12 @@ Set your *.hosts* file to access api and frontends. Only the first one is requir
 127.0.0.1     vuejs.yii2-js-frontends.local
 ~~~
 
-You can change api baseUrl in ./config/config.json shared by all front-end framworks
+> You can change api **baseUrl** in ./config/config.json shared by **all front-end framworks**
 
 ### Set virtial host
 
-Set your vhosts on Apache Server to access api and frontends. Only the first one is required for developpment. the three others are for production tests
+Set your vhosts on Apache Server to access api and frontends. 
+> Only the first one is required for developpment. the three others are for production tests
 
 ~~~apache
 <VirtualHost *:80>
