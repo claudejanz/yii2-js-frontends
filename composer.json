@@ -14,7 +14,8 @@
         "post-create-project-cmd": [
             "cd ./angular/ && npm install && cd ../",
             "cd ./reactjs/ && npm install && cd ../",
-            "cd ./vuejs/ && npm install && cd ../"
+            "cd ./vuejs/ && npm install && cd ../",
+            "cd ./yii2-server/ && composer install && cd ../"
         ]
     }
 }
