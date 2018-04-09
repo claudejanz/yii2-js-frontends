@@ -1,20 +1,5 @@
 # Yii2-js-frontends
 
-<p align="center">
-    <a href="https://github.com/yiisoft" target="_blank">
-        <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
-    </a>
-    <a href="https://github.com/angular" target="_blank">
-        <img src="https://avatars0.githubusercontent.com/u/139426" height="100px">
-    </a>
-    <a href="https://github.com/facebook/react" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1280px-React-icon.svg.png" alt="" height="100">
-    </a>
-    <a href="https://github.com/vuejs/vue" target="_blank">
-        <img src="https://vuejs.org/images/logo.png" height="100px">
-    </a>
-</p>
-
 This project is a skeleton of a [Yii 2](http://www.yiiframework.com/) api with [Angular](https://angular.io/), [Reactjs](https://reactjs.org) and [Vuejs](https://vuejs.org/) frontends
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/claudejanz/yii2-js-frontends.svg)](https://packagist.org/packages/claudejanz/yii2-js-frontends)
