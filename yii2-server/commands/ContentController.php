@@ -186,6 +186,7 @@ class ContentController extends Controller
                 'content'=> Html::tag('p', 'For vuejs front end I used:')
                 .Html::beginTag('ul')
                 .Html::tag('li', Html::a('vuex', 'https://vuex.vuejs.org/en/', ['target'=>'_blank']))
+                .Html::tag('li', Html::a('nuxt', 'https://nuxtjs.org/', ['target'=>'_blank']))
                 .Html::tag('li', Html::a('vue-router', 'https://router.vuejs.org/en/', ['target'=>'_blank']))
                 .Html::tag('li', Html::a('vue-mc', 'http://vuemc.io/', ['target'=>'_blank']))
                 .Html::tag('li', Html::a('vuetifyjs', 'https://vuetifyjs.com/en/', ['target'=>'_blank']))

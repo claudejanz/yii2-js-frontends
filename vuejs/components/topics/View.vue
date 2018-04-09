@@ -23,7 +23,7 @@
 <script>
 import Panel from '~/components/Panel'
 import Topic from '~/models/Topic'
-import PostView from '~/components/posts/View'
+import PostView from '~/components/posts/PostView'
 
 export default {
   components: {
@@ -67,3 +67,7 @@ export default {
   }
 }
 </script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+</style>

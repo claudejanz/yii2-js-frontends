@@ -22,9 +22,9 @@ export const computed = {
 }
 export const mutations= {
   setUser (state, user) {
-    state.user = new User(user)
+    state.user = (user != null ) ? new User(user): null
     state.links = [
-      {text: 'Logins', to: 'login', visible: !user},
+      {text: 'Login', to: 'login', visible: !user},
       {text: 'Register', to: 'register', visible: !user}
     ]
   },

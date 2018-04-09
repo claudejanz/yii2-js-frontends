@@ -1,5 +1,5 @@
 <template>
-  <panel title='Login'>
+  <panel title='Topics'>
     <v-form v-model="valid">
       <v-text-field
       label="username or email"
@@ -28,8 +28,8 @@
 </template>
 
 <script>
-import UserServices from '@/services/UserServices'
-import Panel from '@/components/Panel'
+import CommunicationService from '~/services/CommunicationService'
+import Panel from '~/components/Panel'
 
 export default {
   components: {
@@ -38,7 +38,7 @@ export default {
   data () {
     return {
       valid: false,
-      usernameEmail: 'klod',
+      usernameEmail: 'claude',
       password: '12345678',
       nameRules: [
         v => !!v || 'Name is required'
@@ -49,14 +49,15 @@ export default {
   methods: {
     async login () {
       try {
-        const response = await UserServices.login({
+        const response = await CommunicationService.login({
           usernameEmail: this.usernameEmail,
           password: this.password
         })
         this.$store.dispatch('setUser', response.data)
-        this.$router.push({name: 'index'})
+        this.$router.push({name: 'home'})
       } catch (error) {
         this.errors = {}
+        console.log(error)
         error.response.data.forEach(element => {
           this.errors[element.field] = element.message
         })

@@ -1,0 +1,13 @@
+{
+    "name": "claudejanz/yii2-js-frontends",
+    "description": "boilerplate of yii2 back-end with angular, reactjs and vuejs front-ends",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Claude Janz",
+            "email": "claudejanz@klod.ch"
+        }
+    ],
+    "require": {}
+}

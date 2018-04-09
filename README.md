@@ -149,7 +149,7 @@ Set your vhosts on Apache Server to access api and frontends. Only the first one
 To run vuejs in dev mode go to vuejs folder and run
 
 ~~~batch
-npm start
+npm run dev
 ~~~
 
-You can access front-end through [http://127.0.0.1:8082](http://127.0.0.1:8082)
+You can access front-end through [http://localhost:8082](http://localhost:8082)

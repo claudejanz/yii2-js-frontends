@@ -1,0 +1,23 @@
+#app{
+    margin-top: 60px;
+}
+
+/* loader */
+.spin{
+    animation-name: spin;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    color:#35b874;
+}
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(-360deg);
+    }
+}
+ul{
+    list-style: none;
+}
