@@ -7,10 +7,11 @@ import {
   required,
   string
 } from 'vue-mc/validation'
+
 /**
  * Post model
  */
-export default class Post extends Model {
+export class Post extends Model {
   // Default attributes that define the "empty" state.
   defaults () {
     return {

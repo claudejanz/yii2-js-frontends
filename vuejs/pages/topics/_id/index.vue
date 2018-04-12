@@ -22,7 +22,7 @@
 
 <script>
 import Panel from '~/components/Panel'
-import Topic from '~/models/Topic'
+import {Topic} from '~/models/Topic'
 import PostView from '~/components/posts/View'
 
 export default {

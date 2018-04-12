@@ -42,8 +42,8 @@
 
 <script>
 import Panel from '@/components/Panel';
-import Post from '@/models/Post';
-import { Comments } from '@/models/Comment';
+import {Post} from '@/models/Post';
+import {Comments} from '@/models/Comment';
 import CommentView from '@/components/comments/View';
 
 export default {

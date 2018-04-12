@@ -43,14 +43,5 @@ export const actions= {
     let topics = new Topics()
     await topics.fetch()
     this.commit('setTopics', topics)
-  },
-  async nuxtServerInit ({ dispatch }) {
-    let topics = new Topics()
-    await topics.fetch()
-    this.commit('setTopics', topics)
-    const users = new Users()
-    await users.fetch()
-    this.commit('setUsers', users)
-    // await dispatch('core/load')
   }
 }

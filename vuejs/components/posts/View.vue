@@ -33,21 +33,23 @@
         </v-layout>
       </panel>
     </div>
-    <div v-else><v-icon class="spin">cached</v-icon></div>
+    <loader v-else/>
     <v-divider v-if="index!=undefined && index + 1 < max"></v-divider>
   </div>
 </template>
 
 <script>
 import Panel from '~/components/Panel'
-import Post from '~/models/Post'
+import {Post} from '~/models/Post'
 import {Comments} from '~/models/Comment'
 import CommentView from '~/components/comments/View'
+import Loader from '@/components/Loader'
 
 export default {
   components: {
     Panel,
-    CommentView
+    CommentView,
+    Loader
   },
   data () {
     return {

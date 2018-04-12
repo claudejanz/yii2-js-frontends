@@ -7,18 +7,19 @@ import {
   required,
   string
 } from 'vue-mc/validation'
+
 /**
  * Topic model
  */
-export default class Topic extends Model {
+export class Topic extends Model {
   // Default attributes that define the "empty" state.
   defaults () {
     return {
       id: null,
-      title: null,
-      created_at: null,
-      updated_at: null,
-      can_update: null
+      title: '',
+      created_at: '',
+      updated_at: '',
+      can_update: false
     }
   }
 
@@ -42,7 +43,8 @@ export default class Topic extends Model {
   routes () {
     return {
       fetch: config.apiBaseUrl + 'topics/{id}?expand=posts',
-      save: config.apiBaseUrl + 'topics/{id}'
+      update: config.apiBaseUrl + 'topics/{id}',
+      create: config.apiBaseUrl + 'topics'
     }
   }
 }

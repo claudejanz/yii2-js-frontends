@@ -12,16 +12,21 @@
 </template>
 <script>
 import PageHeader from '@/components/Header'
-
-
+import {Topics} from '@/models/Topic'
+import {User, Users} from '@/models/User'
 export default {
   name: 'App',
   components: {
     PageHeader
   },
-  // async fetch () {
-  //   //  await this.$store.dispatch('init')
-  // }
+  async created (){
+    let topics = new Topics()
+    await topics.fetch()
+    this.$store.commit('setTopics', topics)
+    const users = new Users()
+    await users.fetch()
+    this.$store.commit('setUsers', users)
+  }
 }
 </script>
 <style>

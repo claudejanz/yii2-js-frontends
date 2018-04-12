@@ -196,9 +196,9 @@ class ContentController extends Controller
 
         $total = count($posts);
         $count = 1;
-        Console::startProgress(0, $total, 'Insert Topics: ', false);
+        Console::startProgress(0, $total, 'Insert Posts: ', false);
         
-        // topics
+        // posts
         foreach ($posts as $data) {
             $post = new Post();
             $post->attributes = $data;
@@ -222,9 +222,9 @@ class ContentController extends Controller
         $faker = Factory::create('fr-CH');
         $total =50;
         $count = 1;
-        Console::startProgress(0, $total, 'Insert Topics: ', false);
+        Console::startProgress(0, $total, 'Insert Comments: ', false);
         
-        // topics
+        // comments
         for ($i=0; $i < $total; $i++) {
             $comment = new Comment();
             $comment->content = Html::tag('p', join('</p><p>', $faker->sentences(rand(3, 5))));

@@ -1,40 +1,38 @@
 <template>
   <panel title='Create Topic'>
-    eregr
-    <topic :topic=topic>
+    <topic-form :topic="topic">
       <v-btn
       v-bind:class="this.$store.state.colorHeader"
       dark
       @click="create"
       >Create</v-btn>
-    </topic>
+    </topic-form>
   </panel>
 </template>
 
 <script>
-import Topic from '@/components/forms/Topic'
+import { Topic } from '@/models/Topic'
+import TopicForm from '@/components/forms/Topic'
 import Panel from '@/components/Panel'
 
 export default {
   components: {
-    Panel,
-    Topic
+    TopicForm,
+    Panel
   },
   data () {
     return {
       valid: false,
-      topic: {
-        title: null
-      },
-      errors: {}
+      topic: new Topic(),
+      errors: null
     }
   },
   methods: {
     async create () {
       try {
-        await TopicServices.create(this.topic)
-        this.$store.dispatch('getTabs')
-        this.topic.title = null
+        await this.topic.save()
+        this.$store.dispatch('getTopics')
+        this.$router.push({name:'index'});
       } catch (error) {
         this.errors = {}
         console.log(error)
@@ -45,3 +43,4 @@ export default {
     }
   }
 }
+</script>
